@@ -260,6 +260,16 @@
           <h1 class="title is-3" style="font-weight: normal;">Decision-Native Multimodal Clinical Modeling via Anatomical Grounding and Confidence Calibration</h1>
 <div class="column has-text-centered">
   <div class="publication-links">
+    <!-- arXiv Link (placeholder until ID is assigned) -->
+    <span class="link-block">
+      <a href="#" class="external-link button is-normal is-rounded is-dark">
+        <span class="icon">
+          <i class="ai ai-arxiv" style="color: white;"></i>
+        </span>
+        <span style="color: white;">arXiv</span>
+      </a>
+    </span>
+
     <!-- Code Link -->
     <span class="link-block">
       <a href="https://github.com/juntaoJianggavin/Radev" class="external-link button is-normal is-rounded is-dark">
@@ -347,8 +357,8 @@
 
           <p style="margin-bottom: 0.4rem;">
             <strong>(4) CT-Verdict benchmark.</strong>
-            56,825 IID test questions (binary findings, multiple choice, ordinal severity) and 2,807 OOD
-            questions on external volumes, prediction-only.
+            223,286 training/validation questions and 56,825 IID test questions (binary findings, multiple choice,
+            ordinal severity), plus 2,807 OOD questions on external volumes (prediction-only).
           </p>
         </div>
       </div>
@@ -390,6 +400,8 @@
             attributes, and relations turn each finding into candidate questions; questions are generated deterministically and their labels verified by three LLM
             readers with human spot-checking; finally, a study-level split separates training from test.
             <strong><em>(b)</em></strong> Examples of the three question types: binary presence (noul), multi-way choice, and ordinal severity (score).
+            The release contains 223,286 training/validation questions and 56,825 IID test questions (280,111 total),
+            plus 2,807 OOD questions on external volumes.
           </p>
         </div>
       </div>
