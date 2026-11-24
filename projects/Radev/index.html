@@ -152,7 +152,9 @@
         const tbody = table.querySelector('tbody');
         if (!tbody) return;
 
+        const numbered = (table.querySelector('thead th') || {}).textContent === '#';
         const updateRowNumbers = () => {
+          if (!numbered) return;
           const rows = tbody.querySelectorAll('tr');
           rows.forEach((row, index) => {
             const numberCell = row.cells[0];
@@ -236,9 +238,10 @@
 
         updateRowNumbers();
 
-        const defaultHeader = table.querySelector('th[data-column-index="2"]');
+        const [defCol, defDir] = (table.dataset.defaultSort || '2:desc').split(':');
+        const defaultHeader = table.querySelector('th[data-column-index="' + defCol + '"]');
         if (defaultHeader) {
-          sortTable(2, false, defaultHeader);
+          sortTable(Number(defCol), defDir === 'asc', defaultHeader);
         }
       });
     });
@@ -310,7 +313,7 @@
   </div>
 </section>
 
-<section class="hero teaser" style="margin-bottom: 4rem;">
+<section class="hero teaser" style="margin-bottom: 1rem;">
   <div class="container">
 
     <!-- Highlights -->
@@ -455,15 +458,15 @@
 
           <h3 class="title is-4" style="margin-top: 30px;">CT-Verdict-IID — multiple choice (Choice)</h3>
           <div class="leaderboard-container">
-          <table class="leaderboard-table" id="results-iid-choice">
+          <table class="js-sort-table leaderboard-table" id="results-iid-choice" data-default-sort="1:desc">
             <thead>
               <tr>
-                <th class="no-sort" style="vertical-align: middle; width: 180px;"><strong>Model</strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>mBAcc <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>ECE <span style="color: red;font-size:0.8em">↓</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>Brier <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 180px;" data-column-index="0"><strong>Model</strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="1"><strong>Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="2"><strong>mBAcc <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="3"><strong>mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="4"><strong>ECE <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="5"><strong>Brier <span style="color: red;font-size:0.8em">↓</span></strong></th>
               </tr>
             </thead>
             <tbody>
@@ -498,15 +501,15 @@
 
           <h3 class="title is-4" style="margin-top: 30px;">CT-Verdict-IID — ordinal severity (Score)</h3>
           <div class="leaderboard-container">
-          <table class="leaderboard-table" id="results-iid-score">
+          <table class="js-sort-table leaderboard-table" id="results-iid-score" data-default-sort="1:asc">
             <thead>
               <tr>
-                <th class="no-sort" style="vertical-align: middle; width: 180px;"><strong>Model</strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>MAE <span style="color: red;font-size:0.8em">↓</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>KRPS <span style="color: red;font-size:0.8em">↓</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>QWK <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>ECE <span style="color: red;font-size:0.8em">↓</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 90px;"><strong>Brier <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 180px;" data-column-index="0"><strong>Model</strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="1"><strong>MAE <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="2"><strong>KRPS <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="3"><strong>QWK <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="4"><strong>ECE <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 90px;" data-column-index="5"><strong>Brier <span style="color: red;font-size:0.8em">↓</span></strong></th>
               </tr>
             </thead>
             <tbody>
@@ -541,16 +544,16 @@
 
           <h3 class="title is-4" style="margin-top: 30px;">CT-Verdict-OOD (external volumes, prediction-only)</h3>
           <div class="leaderboard-container">
-          <table class="leaderboard-table" id="results-ood">
+          <table class="js-sort-table leaderboard-table" id="results-ood" data-default-sort="1:desc">
             <thead>
               <tr>
-                <th class="no-sort" style="vertical-align: middle; width: 180px;"><strong>Model</strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Noul Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Noul mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Choice Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Choice mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Score MAE <span style="color: red;font-size:0.8em">↓</span></strong></th>
-                <th class="no-sort" style="vertical-align: middle; width: 100px;"><strong>Score KRPS <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 180px;" data-column-index="0"><strong>Model</strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="1"><strong>Noul Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="2"><strong>Noul mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="3"><strong>Choice Acc <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="4"><strong>Choice mAUC <span style="color: green;font-size:0.8em">↑</span></strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="5"><strong>Score MAE <span style="color: red;font-size:0.8em">↓</span></strong></th>
+                <th style="vertical-align: middle; width: 100px;" data-column-index="6"><strong>Score KRPS <span style="color: red;font-size:0.8em">↓</span></strong></th>
               </tr>
             </thead>
             <tbody>
