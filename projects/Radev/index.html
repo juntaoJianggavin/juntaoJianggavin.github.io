@@ -585,24 +585,36 @@
   </div>
 </section>
 
-<footer class="footer">
+<section class="section">
   <div class="container">
-    <div class="content has-text-centered">
+
     <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3" style="margin-top: 30px;">Confidence Calibration</h2>
+          <img src="./static/images/fig_lik_murphy.png" alt="Reliability resolution analysis" style="max-width: 75%; display: block; margin: 0 auto;">
+          <p style="text-align: center; margin: 40px auto 0 auto; width: 80%;">
+            <strong>Reliability resolution analysis.</strong> Each point represents a model plotted by its reliability error (REL) and resolution (RES),
+            computed from the binned Murphy decomposition of the top-label Brier score. The dashed line marks the RES = REL boundary.
           </p>
         </div>
       </div>
     </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <img src="./static/images/fig_acc_vs_rejection.png" alt="Accuracy under confidence-based rejection" style="max-width: 75%; display: block; margin: 30px auto 0 auto;">
+          <p style="text-align: center; margin: 40px auto 0 auto; width: 80%;">
+            <strong>Accuracy under confidence-based rejection.</strong> Samples are rejected in ascending order of predictive confidence.
+            The rejection rate is the percentage of all samples rejected, and accuracy is computed over the retained samples.
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
-</footer>
+</section>
 
   <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
