@@ -372,9 +372,13 @@
 
         <div class="content has-text-justified">
           <p>
-            <strong>Radev</strong> reads a whole 3D abdominal CT volume together with a clinical question and a small
-            candidate set, and emits a <strong>calibrated probability distribution over the candidates in a single
-            forward pass</strong> — no autoregressive decoding, no free-text generation.
+            <strong>Radev</strong> is a decision-native multimodal model for 3D abdominal CT interpretation. It reads a
+            whole CT volume together with a clinical question and a small candidate set, and emits a
+            <strong>calibrated probability distribution over the candidates in a single forward pass</strong>, without
+            autoregressive decoding or free-text generation. Anatomical grounding tells the model where to look, and
+            counterfactual-calibrated training tells it how sure to be. We evaluate Radev on <strong>CT-Verdict</strong>,
+            a benchmark of single-token verdicts (binary finding presence, multiple choice, and ordinal severity) with
+            an IID cohort and a prediction-only OOD cohort.
           </p>
 
           <p style="margin-bottom: 0.4rem;">
@@ -385,7 +389,7 @@
 
           <p style="margin-bottom: 0.4rem;">
             <strong>(2) Anatomical grounding.</strong>
-            A frozen 3D encoder pools per-organ features into an evidence ledger; each question binds to its
+            A frozen 3D encoder pools per-organ features into an evidence ledger, and each question binds to its
             target organs and their high-resolution 2D evidence slices.
           </p>
 
