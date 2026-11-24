@@ -53,6 +53,7 @@ body {
 
 .publication-authors {
     font-family: 'Google Sans', sans-serif;
+    color: hsl(204, 86%, 53%);
 }
 
 .publication-venue {
